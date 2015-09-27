@@ -8,8 +8,8 @@ import 'ast.dart';
 import 'document.dart';
 import 'util.dart';
 
-///Maps an URL (specified in a reference).
-///If nothing to change, just return [url].
+/// Maps an URL (specified in a reference).
+/// If nothing to change, just return [url].
 typedef String LinkMapper(InlineParser parser, String url);
 
 /// Maintains the internal state needed to parse inline span elements in
@@ -367,7 +367,8 @@ class LinkSyntax extends TagSyntax {
       }
 
       url = _map(parser, url);
-      if (url == null || url is Link) return url;
+      if (url == null) return null;
+      if (url is Link) return url as Link;
       assert(url is! Node); //not allowed here
 
       return new Link(null, url, title);
